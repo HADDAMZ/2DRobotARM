@@ -35,10 +35,10 @@ def drawRectangle(rect, M, screen, color):
     pygame.draw.polygon(screen, color, points, 0)
     pygame.draw.polygon(screen, BLACK, points, 2)
 
-rectangle1 = np.array([[0, 0], [200, 0], [200, 40], [0, 40]])  # Increase y-coordinates by 2x
-rectangle2 = np.array([[0, 0], [200, 0], [200, 40], [0, 40]])  # Increase y-coordinates by 2x
+rectangle1 = np.array([[0, 0], [200, 0], [200, 40], [0, 40]])
+rectangle2 = np.array([[0, 0], [200, 0], [200, 40], [0, 40]])
 
-I = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+I = np.array([[1, 0, 0, ], [0, 1, 0], [0, 0, 1]])
 
 theta2 = 0  # degrees
 theta2_vel = .1  # 1 degree / FPS
@@ -46,6 +46,10 @@ theta2_vel = .1  # 1 degree / FPS
 # Load background image
 background_image = pygame.image.load('ROBOT.PNG')
 background_image = pygame.transform.scale(background_image, (700, 700))
+
+# Load background sound
+pygame.mixer.music.load('robot.wav')
+pygame.mixer.music.play(-1)  # Play the sound on loop
 
 while not done:
     for event in pygame.event.get():
@@ -69,6 +73,8 @@ while not done:
 
     clock.tick(60)
 
+pygame.mixer.music.stop()  # Stop the background sound
 pygame.quit()
+
 
 
